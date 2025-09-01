@@ -15,6 +15,10 @@ const Login = () => {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
     }
 
+    const irParaCadastro = () => {
+    navigate("/cadastro-usuario");
+};
+
     const login = async () => {
         try {
             const resposta = await autenticacaoService.login(usuario);
@@ -39,6 +43,25 @@ const Login = () => {
             <Password value={usuario.senha} name="senha" onChange={handleChange} />
             <br />
             <Button label="Entrar" onClick={login} />
+            <br />
+            <div>
+                <div>
+                    <br />
+                    <Button label="Cadastre-se" onClick={irParaCadastro} className="p-button-text" />
+                    <br />
+                    <p >
+                        Ou entre com seu e-mail
+                        </p>
+                    <br />
+                    <button>
+                        Google
+                        </button>
+                    <br />
+                    <button>
+                        Facebook
+                        </button>
+                </div>
+            </div>
         </div>
     );
 }

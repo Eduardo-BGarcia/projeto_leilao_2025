@@ -37,5 +37,15 @@ public class AutenticacaoService {
 
 
         return autenticacaoDTO;
+
+    }
+    
+    public PessoaRequisicaoDTO salvar(PessoaRequisicaoDTO pessoa) {
+        Pessoa novaPessoa = new Pessoa();
+        novaPessoa.setNome(pessoa.getNome());
+        novaPessoa.setEmail(pessoa.getEmail());
+        novaPessoa.setSenha(pessoa.getSenha());
+        pessoaRepository.save(novaPessoa);
+        return pessoa;
     }
 }

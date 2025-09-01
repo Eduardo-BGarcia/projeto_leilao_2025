@@ -22,4 +22,9 @@ public class AutenticacaoController {
     public ResponseEntity<PessoaAutenticacaoDTO> login(@RequestBody PessoaRequisicaoDTO pessoa) {
         return  ResponseEntity.ok(autenticacaoService.autenticar(pessoa));
     }
+
+    @PostMapping("/cadastro")
+    public ResponseEntity<PessoaRequisicaoDTO> cadastro(@RequestBody PessoaRequisicaoDTO pessoa) {
+        return  ResponseEntity.ok(autenticacaoService.salvar(pessoa));
+    }
 }
