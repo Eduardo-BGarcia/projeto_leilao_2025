@@ -5,6 +5,7 @@ import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import AutenticacaoService from "../../services/AutenticacaoService";
 import { useNavigate } from "react-router-dom";
+import logo from '../../assets/banner-login.jpg';
 
 const Login = () => {
     const autenticacaoService = new AutenticacaoService();
@@ -16,8 +17,8 @@ const Login = () => {
     }
 
     const irParaCadastro = () => {
-    navigate("/cadastro-usuario");
-};
+        navigate("/cadastro-usuario");
+    };
 
     const login = async () => {
         try {
@@ -36,30 +37,36 @@ const Login = () => {
     }
 
     return (
-        <div className="container">
-            <label>Email</label>
-            <InputText value={usuario.email} name="email" onChange={handleChange} />
-            <label>Senha</label>
-            <Password value={usuario.senha} name="senha" onChange={handleChange} />
-            <br />
-            <Button label="Entrar" onClick={login} />
-            <br />
-            <div>
-                <div>
-                    <br />
-                    <Button label="Cadastre-se" onClick={irParaCadastro} className="p-button-text" />
-                    <br />
-                    <p >
-                        Ou entre com seu e-mail
-                        </p>
-                    <br />
-                    <button>
-                        Google
-                        </button>
-                    <br />
-                    <button>
-                        Facebook
-                        </button>
+        <div className="container-superior">
+
+            <div className="container">
+                
+                <div className="image-section">
+                    <img src={logo} alt="Logo da Empresa" />
+                </div>
+
+                <div className="form-section f-fundo">
+                    <h1>Bem-vindo de volta!</h1>
+                    <p>Faça login para continuar</p>
+
+                    <div className="input-group">
+                        <label>Email</label>
+                        <InputText value={usuario.email} name="email" onChange={handleChange} />
+                    </div>
+
+                    <div className="input-group">
+                        <label>Senha</label>
+                        <Password value={usuario.senha} name="senha" onChange={handleChange} feedback={false} />
+                    </div>
+                    
+                    <Button label="Entrar" onClick={login} className="p-button-primary b-entrar" />
+                    
+                    <div className="separator">
+                        <p>Não tem uma conta?</p>
+                    </div>
+                    
+                    <Button label="Cadastre-se" onClick={irParaCadastro} className="p-button-secondary b-cadastrar" />
+
                 </div>
             </div>
         </div>

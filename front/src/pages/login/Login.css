@@ -1,8 +1,108 @@
 .container{
+    display: flex; 
+    flex-direction: row;
+    width: 1200px;
+    height: 600px;
+    box-shadow: 0 80px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden; 
+    background-color: #ffffff;
+}
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.container-superior {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f2f2f3;
+    background-color: #00008B;
 }
+
+.image-section {
+    flex: 2; 
+    background-color: #e9ecef;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-section {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    gap: 15px; 
+
+}
+
+.form-section h1 {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-section p {
+    margin-top: 0;
+    color: #666;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.p-inputtext, .p-password {
+    width: 100%;
+}
+
+.separator {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.f-fundo{
+    background-color: #E0FFFF;
+}
+
+.b-cadastrar {
+    background-color: #D2691E; 
+    border-color: #D2691E;  
+    color: #ffffff;     
+}
+
+.b-cadastrar:hover {
+    background-color: #b85d1a; 
+    border-color: #b85d1a;
+}
+
+.b-entrar {
+    background-color: #DAA520;
+    border-color: #DAA520;    
+    color: #ffffff;           
+}
+
+
+.b-entrar:hover {
+    background-color: #B8860B; 
+    border-color: #B8860B;
+}
+
