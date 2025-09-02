@@ -11,5 +11,10 @@ class AutenticacaoService extends BaseService{
         const resposta = await this.api.post(`${this.endPoint}/login`, dados);
         return resposta;
     }
+
+    async salvar(dados){
+        const resposta = await this.api.post(`${this.endPoint}/cadastro`, dados);
+        return resposta;
+    }
 }
 export default AutenticacaoService;
