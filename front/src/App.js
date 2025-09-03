@@ -1,6 +1,4 @@
 import './App.css';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
 import Calculadora from './pages/calculadora/Calculadora';
 import Home from './pages/home/Home';
 import CadastroUsuario from './pages/cadastroUsuario/CadastroUsuario';
@@ -14,7 +12,6 @@ import Perfil from './pages/perfil/Perfil';
 function App() {
   return (
     <>
-     {/*  <Header nome="Frank" /> */}
       <BrowserRouter>
         <Routes>
           <Route element={<RotaPrivadaLayout/>}>
@@ -33,7 +30,6 @@ function App() {
           
         </Routes>
       </BrowserRouter>
-      {/* <Footer /> */}
     </>
   );
 }
