@@ -10,7 +10,6 @@ import com.leilao.backend.dto.PessoaAutenticacaoDTO;
 import com.leilao.backend.dto.PessoaRequisicaoDTO;
 import com.leilao.backend.model.Pessoa;
 import com.leilao.backend.repository.PessoaRepository;
-import com.leilao.backend.security.JwtService;
 
 @Service
 public class AutenticacaoService {
@@ -18,8 +17,6 @@ public class AutenticacaoService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtService jwtService;
 
     @Autowired
     private PessoaRepository pessoaRepository;
@@ -33,7 +30,7 @@ public class AutenticacaoService {
            PessoaAutenticacaoDTO autenticacaoDTO = new PessoaAutenticacaoDTO();
            autenticacaoDTO.setEmail(pessoaBanco.getEmail());
            autenticacaoDTO.setNome(pessoaBanco.getNome());
-           autenticacaoDTO.setToken(jwtService.generateToken(authentication.getName()));
+           autenticacaoDTO.setToken(authentication.getName());
 
 
         return autenticacaoDTO;

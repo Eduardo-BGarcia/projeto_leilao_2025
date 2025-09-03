@@ -28,22 +28,19 @@ public class PessoaService implements UserDetailsService {
     @Autowired
     private MessageSource messageSource;
 
-    @Autowired
-    private EmailService emailService;
-
     public Pessoa inserir(Pessoa pessoa) {
         Pessoa pessoaCadastrada = pessoaRepository.save(pessoa);
         // emailService.enviarEmailSimples(pessoaCadastrada.getEmail(), "Cadastrado com
         // Sucesso", "Cadastro no Sistema de Leilão XXX foi feito com sucesso!");
-        enviarEmailSucesso(pessoaCadastrada);
+        // enviarEmailSucesso(pessoaCadastrada);
         return pessoaCadastrada;
     }
 
-    private void enviarEmailSucesso(Pessoa pessoa) {
-        Context context = new Context();
-        context.setVariable("nome", pessoa.getNome());
-        emailService.emailTemplate(pessoa.getEmail(), "Cadastro Sucesso", context, "cadastroSucesso");
-    }
+    // private void enviarEmailSucesso(Pessoa pessoa) {
+    //     Context context = new Context();
+    //     context.setVariable("nome", pessoa.getNome());
+    //     emailService.emailTemplate(pessoa.getEmail(), "Cadastro Sucesso", context, "cadastroSucesso");
+    // }
 
     public Pessoa alterar(Pessoa pessoa) {
         // return pessoaRepository.save(pessoa);

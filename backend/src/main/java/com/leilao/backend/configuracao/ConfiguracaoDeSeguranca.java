@@ -1,35 +1,22 @@
-package com.leilao.backend.security;
-
-import java.util.List;
+package com.leilao.backend.configuracao;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.List;
+
 @Configuration
-@EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
-public class ConfiguracaoSeguranca {
-
-  
-    private final JwtFiltroAutenticacao jwtRequestFilter;
-
-    public ConfiguracaoSeguranca(JwtFiltroAutenticacao jwtRequestFilter) {
-        this.jwtRequestFilter = jwtRequestFilter;
-    }
-
+public class ConfiguracaoDeSeguranca {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -42,34 +29,28 @@ public class ConfiguracaoSeguranca {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        http
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilita CORS com configuração customizada
+            .csrf(csrf -> csrf.disable()) // Desabilita CSRF, comum em APIs REST
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Define a política de sessão como sem estado (para JWT)
             .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers("/autenticacao/**").permitAll()
-            .requestMatchers("/perfil/**").permitAll()
-            .requestMatchers("/pessoa/**").permitAll()
-            /* .requestMatchers("/api/pessoa/**").hasRole("ADMIN") */
-                .anyRequest().authenticated()
-            )
-            .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+                .requestMatchers("/api/autenticacao/**", "/autenticacao/**").permitAll() // Libera os endpoints de autenticação
+                .anyRequest().authenticated() // Exige autenticação para todas as outras requisições
+            );
+        
         return http.build();
     }
 
-        @Bean
+    // Configuração CORS para liberar o frontend
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:3000"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type")); 
-        configuration.setAllowCredentials(true); 
-
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); 
-
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 }

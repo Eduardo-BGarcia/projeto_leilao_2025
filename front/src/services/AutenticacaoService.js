@@ -13,7 +13,7 @@ class AutenticacaoService extends BaseService{
     }
 
     async salvar(dados){
-        const resposta = await this.api.post(`${this.endPoint}/cadastro`, dados);
+        const resposta = await this.api.post(`${this.endPoint}/cadastro-usuario`, dados);
         return resposta;
     }
 }
