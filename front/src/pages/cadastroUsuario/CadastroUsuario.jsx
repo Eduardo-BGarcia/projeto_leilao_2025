@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
 import { useNavigate } from "react-router-dom";
 import AutenticacaoService from "../../services/AutenticacaoService";
 import './CadastroUsuario.css';
+import { Toast } from 'primereact/toast';
 
 const CadastroUsuario = () => {
     const autenticacaoService = new AutenticacaoService();
-    const [usuario, setUsuario] = useState({ nome: "", sobrenome: "", email: "", senha: "" });
+    const [usuario, setUsuario] = useState({ nome: "", email: "", senha: "" });
     const navigate = useNavigate();
+    const toast = useRef(null);
 
     const handleChange = (e) => {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
@@ -21,22 +23,36 @@ const CadastroUsuario = () => {
     const cadastrar = async () => {
         try {
             const resposta = await autenticacaoService.salvar(usuario);
-            console.log(resposta.data);
-            console.log(usuario);
-            if (resposta.status === 200 && resposta.data.token) {
-                localStorage.setItem("usuario", JSON.stringify(resposta.data));
-                navigate("/");
+            
+            if (resposta.status === 200) {
+                toast.current.show({
+                    severity: 'success',
+                    summary: 'Sucesso',
+                    detail: 'Usuário cadastrado com sucesso!',
+                    life: 5000
+                });
+            
+                setTimeout(() => {
+                    navigate("/login");
+                }, 1500);
+
             } else {
-                alert("Erro ao fazer login");
+                alert("Erro");
             }
         } catch (error) {
             console.log(error);
-            alert(error.response?.data?.mensagem || "Erro ao cadastrar usuário");
+            toast.current.show({
+                severity: 'error',
+                summary: 'Erro',
+                detail: error.response?.data?.mensagem || "Erro ao cadastrar usuário.",
+                life: 5000
+            });
         }
     };
 
     return (
         <div className="container-superior-cadastro">
+            <Toast ref={toast} />
             <div className="form-section f-fundo">
                 <h1>Cadastro de Usuário</h1>
             

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import './Login.css';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
@@ -6,11 +6,13 @@ import { Button } from 'primereact/button';
 import AutenticacaoService from "../../services/AutenticacaoService";
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/banner-login.jpg';
+import { Toast } from 'primereact/toast';
 
 const Login = () => {
     const autenticacaoService = new AutenticacaoService();
     const [usuario, setUsuario] = useState({ email: '', senha: '' });
     const navigate = useNavigate();
+    const toast = useRef(null);
 
     const handleChange = (e) => {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
@@ -23,22 +25,34 @@ const Login = () => {
     const login = async () => {
         try {
             const resposta = await autenticacaoService.login(usuario);
-            console.log(resposta.data);
-            if (resposta.status === 200 && resposta.data.token) {
-                localStorage.setItem("usuario", JSON.stringify(resposta.data));
-                navigate("/");
+            if (resposta.status === 200) {
+                toast.current.show({
+                    severity: 'success',
+                    summary: 'Sucesso',
+                    detail: 'Usuário encontrado com sucesso!',
+                    life: 5000
+                });
+            
+                setTimeout(() => {
+                    navigate("/home");
+                }, 1500);
             } else {
-                alert("Erro ao fazer login");
+                alert("Usuário não cadastrado.");
             }
         } catch (error) {
-            console.log(error);
-            alert(error.response.data.mensagem);
+            console.error(error);
+            toast.current.show({
+                severity: 'error',
+                summary: 'Erro',
+                detail: error.response?.data?.mensagem || "Usuário não cadastrado!",
+                life: 5000
+            });
         }
     }
 
     return (
         <div className="container-superior">
-
+            <Toast ref={toast} />
             <div className="container">
                 
                 <div className="image-section">
