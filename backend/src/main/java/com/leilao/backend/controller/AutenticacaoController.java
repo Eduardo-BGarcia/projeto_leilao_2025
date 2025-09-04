@@ -19,11 +19,11 @@ public class AutenticacaoController {
     private AutenticacaoService autenticacaoService;
 
     @PostMapping("/login")
-    public ResponseEntity<PessoaAutenticacaoDTO> login(@RequestBody PessoaRequisicaoDTO pessoa) {
-        return  ResponseEntity.ok(autenticacaoService.autenticar(pessoa));
+    public ResponseEntity<PessoaAutenticacaoDTO> login(@RequestBody PessoaRequisicaoDTO pessoaRequisicaoDTO) {
+        return  ResponseEntity.ok(autenticacaoService.autenticar(pessoaRequisicaoDTO));
     }
 
-    @PostMapping("/cadastro")
+    @PostMapping("/cadastro-usuario")
     public ResponseEntity<PessoaRequisicaoDTO> cadastro(@RequestBody PessoaRequisicaoDTO pessoa) {
         return  ResponseEntity.ok(autenticacaoService.salvar(pessoa));
     }

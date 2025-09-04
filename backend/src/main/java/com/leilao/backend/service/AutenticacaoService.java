@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.leilao.backend.dto.PessoaAutenticacaoDTO;
 import com.leilao.backend.dto.PessoaRequisicaoDTO;
 import com.leilao.backend.model.Pessoa;
@@ -17,32 +17,28 @@ public class AutenticacaoService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public PessoaAutenticacaoDTO autenticar(PessoaRequisicaoDTO pessoa) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(pessoa.getEmail(), pessoa.getSenha()));
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-           Pessoa pessoaBanco = pessoaRepository.findByEmail(pessoa.getEmail()).get();
-
+    public PessoaAutenticacaoDTO autenticar(PessoaRequisicaoDTO pessoaRequisicaoDTO) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(pessoaRequisicaoDTO.getEmail(), pessoaRequisicaoDTO.getSenha()));
+           Pessoa pessoaBanco = pessoaRepository.findByEmail(pessoaRequisicaoDTO.getEmail()).get();
            PessoaAutenticacaoDTO autenticacaoDTO = new PessoaAutenticacaoDTO();
            autenticacaoDTO.setEmail(pessoaBanco.getEmail());
-           autenticacaoDTO.setNome(pessoaBanco.getNome());
-           autenticacaoDTO.setToken(authentication.getName());
-
-
+           autenticacaoDTO.setSenha(authentication.getName());
         return autenticacaoDTO;
 
     }
     
-    public PessoaRequisicaoDTO salvar(PessoaRequisicaoDTO pessoa) {
+    public PessoaRequisicaoDTO salvar(PessoaRequisicaoDTO pessoaRequisicaoDTO) {
         Pessoa novaPessoa = new Pessoa();
-        novaPessoa.setNome(pessoa.getNome());
-        novaPessoa.setEmail(pessoa.getEmail());
-        novaPessoa.setSenha(pessoa.getSenha());
+        novaPessoa.setNome(pessoaRequisicaoDTO.getNome());
+        novaPessoa.setEmail(pessoaRequisicaoDTO.getEmail());
+        novaPessoa.setSenha(passwordEncoder.encode(pessoaRequisicaoDTO.getSenha()));
         pessoaRepository.save(novaPessoa);
-        return pessoa;
+        return pessoaRequisicaoDTO;
     }
 }
