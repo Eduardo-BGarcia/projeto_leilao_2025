@@ -27,6 +27,7 @@ function App() {
           <Route path='/cadastro' Component={Cadastro} />
           <Route path='/login' Component={() => <Login />} />
           <Route path='/cadastro-usuario' Component={CadastroUsuario} />
+          <Route path='/home' Component={Home} />
           
         </Routes>
       </BrowserRouter>
