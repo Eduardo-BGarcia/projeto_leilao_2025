@@ -1,11 +1,9 @@
 .footer {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: #585555;
-    border: 1px solid #2e2e2e;
-    padding: 30px;
-    color: #fff;
+    background-color: oklch(20.8% 0.042 265.755);
+    border-bottom: 1px solid #2e2e2e;
+    padding: 10px 25px;
+    color: #fcf9f9; 
+    justify-content: space-between; 
     text-align: center;
-    bottom: 0;  
-    width: 100%;
-    position: fixed;
 }

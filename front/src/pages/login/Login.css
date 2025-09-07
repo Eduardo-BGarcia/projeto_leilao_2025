@@ -7,13 +7,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
 .container-superior {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #00008B;
+    background-color: oklch(28.2% 0.091 267.935);
 
     .container{
     display: flex; 
@@ -23,6 +22,8 @@ body {
     border-radius: 10px;
     overflow: hidden; 
     background-color: #ffffff;
+    box-shadow: 0 4px 12px oklch(64.6% 0.222 41.116)
+
     }
 
     .image-section {
