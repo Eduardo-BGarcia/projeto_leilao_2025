@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leilao.backend.dto.PessoaAutenticacaoDTO;
-import com.leilao.backend.dto.PessoaRequisicaoDTO;
+import com.leilao.backend.dto.PessoaDTO;
 import com.leilao.backend.service.AutenticacaoService;
 
 @RestController
@@ -19,12 +19,12 @@ public class AutenticacaoController {
     private AutenticacaoService autenticacaoService;
 
     @PostMapping("/login")
-    public ResponseEntity<PessoaAutenticacaoDTO> login(@RequestBody PessoaRequisicaoDTO pessoaRequisicaoDTO) {
+    public ResponseEntity<PessoaAutenticacaoDTO> login(@RequestBody PessoaDTO pessoaRequisicaoDTO) {
         return  ResponseEntity.ok(autenticacaoService.autenticar(pessoaRequisicaoDTO));
     }
 
     @PostMapping("/cadastro-usuario")
-    public ResponseEntity<PessoaRequisicaoDTO> cadastro(@RequestBody PessoaRequisicaoDTO pessoa) {
+    public ResponseEntity<PessoaDTO> cadastro(@RequestBody PessoaDTO pessoa) {
         return  ResponseEntity.ok(autenticacaoService.salvar(pessoa));
     }
 }

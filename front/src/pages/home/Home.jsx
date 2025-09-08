@@ -8,19 +8,7 @@ import imagemCarrossel4 from '../../assets/carrossel-n4.jpg';
 import { Button } from 'primereact/button';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-
-const SetaIcon = ({ direction = 'right' }) => (
-    <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        height="24" 
-        viewBox="0 -960 960 960" 
-        width="24" 
-        fill="currentColor"
-        style={{ transform: direction === 'left' ? 'rotate(180deg)' : 'none' }}
-    >
-        <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
-    </svg>
-);
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const imagensHome = [
@@ -32,22 +20,7 @@ const Home = () => {
 
     const carrosselRef = useRef();
     const [width, setWidth] = useState(0);
-    const [position, setPosition] = useState(0);
-
-    
-
-    const handleNext = () => {
-        const slideWidth = carrosselRef.current.offsetWidth;
-        const newPosition = Math.max(position - slideWidth, -width);
-        setPosition(newPosition);
-    };
-
-    // NOVO: Função para mover para o slide anterior
-    const handlePrev = () => {
-        const slideWidth = carrosselRef.current.offsetWidth;
-        const newPosition = Math.min(position + slideWidth, 0);
-        setPosition(newPosition);
-    };
+    const navigate = useNavigate();
 
     useEffect(() => {
         const updateWidth = () => {
@@ -64,6 +37,14 @@ const Home = () => {
             window.removeEventListener('resize', updateWidth);
         };
     }, [imagensHome]);
+
+    const irParaListaLeiloes = () => {
+        navigate("/listar-leiloes");
+    };
+
+    const irParaCadastroLeiloes = () => {
+        navigate("/cadastro-leiloes");
+    };
 
     return (
         <>
@@ -98,8 +79,8 @@ const Home = () => {
                                 <p>Participe dos melhores leilões de gado online, na cidade de Paranavaí. Comece a explorar as oportunidades!</p>
                                 <br />
                             </div>
-                            <Button className="b-listar-leiloes">Leilões neste Momento</Button>
-                            <Button className="b-cadastrar-leiloes">Cadastrar Leilões</Button>
+                            <Button className="b-listar-leiloes" onClick={irParaListaLeiloes}>Leilões neste Momento</Button>
+                            <Button className="b-cadastrar-leiloes" onClick={irParaCadastroLeiloes}>Cadastrar Leilões</Button>
                             <br />
                         </div>
                     </div>

@@ -28,6 +28,7 @@
     width: 300px;
     border-radius: 18px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .header-icon {

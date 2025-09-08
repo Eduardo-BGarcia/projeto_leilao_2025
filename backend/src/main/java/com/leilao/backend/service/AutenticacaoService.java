@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.leilao.backend.dto.PessoaAutenticacaoDTO;
-import com.leilao.backend.dto.PessoaRequisicaoDTO;
+import com.leilao.backend.dto.PessoaDTO;
 import com.leilao.backend.model.Pessoa;
 import com.leilao.backend.repository.PessoaRepository;
 
@@ -23,7 +23,7 @@ public class AutenticacaoService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public PessoaAutenticacaoDTO autenticar(PessoaRequisicaoDTO pessoaRequisicaoDTO) {
+    public PessoaAutenticacaoDTO autenticar(PessoaDTO pessoaRequisicaoDTO) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(pessoaRequisicaoDTO.getEmail(), pessoaRequisicaoDTO.getSenha()));
            Pessoa pessoaBanco = pessoaRepository.findByEmail(pessoaRequisicaoDTO.getEmail()).get();
            PessoaAutenticacaoDTO autenticacaoDTO = new PessoaAutenticacaoDTO();
@@ -33,7 +33,7 @@ public class AutenticacaoService {
 
     }
     
-    public PessoaRequisicaoDTO salvar(PessoaRequisicaoDTO pessoaRequisicaoDTO) {
+    public PessoaDTO salvar(PessoaDTO pessoaRequisicaoDTO) {
         Pessoa novaPessoa = new Pessoa();
         novaPessoa.setNome(pessoaRequisicaoDTO.getNome());
         novaPessoa.setEmail(pessoaRequisicaoDTO.getEmail());

@@ -76,7 +76,8 @@
 }
 
 .b-cadastrar-leiloes {
-    background-color: #D2691E; 
+    background-color: #D2691E;
+    justify-content: center; 
 }
 
 .b-cadastrar-leiloes:hover {
@@ -93,6 +94,7 @@
 
 .b-listar-leiloes:hover {
     background-color: #B8860B;
+    justify-content: center;
 }
 
 
