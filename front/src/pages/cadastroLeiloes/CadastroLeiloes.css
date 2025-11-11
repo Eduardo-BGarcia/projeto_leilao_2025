@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: oklch(28.2% 0.091 267.935);
+    background-color: #002349;
 
     .form-section { 
     display: flex;
@@ -21,7 +21,7 @@ body {
     padding: 60px;
     gap: 15px; 
     width: 600px;
-    box-shadow: 0 4px 12px oklch(64.6% 0.222 41.116);
+    box-shadow: 0 8px 20px #957C3D;
 
     border-radius: 10px;
     }
@@ -37,7 +37,7 @@ body {
     }
 
     .f-fundo{
-        background-color: #E0FFFF;
+        background-color: #ffffff;;
     }
 
     .form-section h1 {
@@ -68,10 +68,6 @@ body {
     .separator {
         text-align: center;
         padding: 5px;
-    }
-
-    .f-fundo{
-        background-color: #E0FFFF;
     }
 
     .b-cadastrar {

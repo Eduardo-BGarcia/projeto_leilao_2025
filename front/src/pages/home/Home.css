@@ -1,7 +1,7 @@
 .home-container {
     width: 100%;
     min-height: 100vh;
-    background-color: oklch(28.2% 0.091 267.935);
+    background-color: #002349;
     padding: 20px 0;
     box-sizing: border-box;
 }
@@ -20,7 +20,7 @@
     max-width: 1080px; 
     margin: 20px 0;
     border-radius: 15px;
-    box-shadow: 0 4px 12px oklch(64.6% 0.222 41.116);
+    box-shadow: 0 8px 20px #957C3D;
 }
 
 /* Janela de visualização */
@@ -28,13 +28,13 @@
     cursor: grab;
     overflow: hidden; 
     border-radius: 15px;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
 }
 
 /* O trilho que contém as imagens e que se move */
 .inner {
     display: flex; 
-    background-color: #f1f1f1;
+    background-color: #ffffff;
 }
 
 /*  Cada item do carrossel */
@@ -57,7 +57,7 @@
 .detalhes-leilao-futuro {
     width: 100%;
     max-width: 850px;
-    background-color: #e0f2f7;
+    background-color: #ffffff;
     padding: 30px 20px;
     box-sizing: border-box;
     text-align: center;
@@ -65,7 +65,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 0 4px 12px oklch(64.6% 0.222 41.116);
+    box-shadow: 0 8px 20px #957C3D;
 }
 
 .b-cadastrar-leiloes, .b-listar-leiloes {

@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: oklch(28.2% 0.091 267.935);
+    background-color: #002349;
 
     .container{
     display: flex; 
@@ -22,7 +22,7 @@ body {
     border-radius: 10px;
     overflow: hidden; 
     background-color: #ffffff;
-    box-shadow: 0 4px 12px oklch(64.6% 0.222 41.116)
+    box-shadow: 0 4px 12px #957C3D;
 
     }
 
@@ -78,7 +78,7 @@ body {
     }
 
     .f-fundo{
-        background-color: #E0FFFF;
+        background-color: #ffffff;
     }
 
     .b-cadastrar {

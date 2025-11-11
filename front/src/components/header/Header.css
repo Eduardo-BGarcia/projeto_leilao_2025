@@ -1,9 +1,9 @@
 .header {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: oklch(27.9% 0.041 260.031);
-    border-bottom: 1px solid #2e2e2e;
+    background-color: #002349;
+    border-bottom: 1px solid #b3b0b0;
     padding: 10px 25px;
-    color: #fcf9f9;
+    color: #ffffff;
     display: flex; 
     justify-content: space-between;
     align-items: center; 
@@ -29,6 +29,7 @@
     border-radius: 18px;
     object-fit: cover;
     cursor: pointer;
+    box-shadow: 0 2px 2px #957C3D;
 }
 
 .header-icon {

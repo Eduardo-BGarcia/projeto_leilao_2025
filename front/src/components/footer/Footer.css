@@ -1,7 +1,7 @@
 .footer {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: oklch(20.8% 0.042 265.755);
-    border-bottom: 1px solid #2e2e2e;
+    background-color: #002349;
+    border-top: 1px solid #b3b0b0;
     padding: 10px 25px;
     color: #fcf9f9; 
     justify-content: space-between; 
